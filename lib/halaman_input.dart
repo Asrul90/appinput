@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:appinput/lihat_cafe.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -56,6 +57,16 @@ class _Halaman_InputState extends State<Halaman_Input> {
                   ),
                 );
               }),
+      floatingActionButton: FloatingActionButton(
+        child: Text(
+          '+',
+          style: TextStyle(fontSize: 24),
+        ),
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => LihatCafe()));
+        },
+      ),
     );
   }
 }
