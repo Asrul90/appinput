@@ -10,6 +10,10 @@ class LihatCafe extends StatefulWidget {
 class _LihatCafeState extends State<LihatCafe> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("LihatCafeYangDiKunjungi"),
+      ),
+    );
   }
 }
