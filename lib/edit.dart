@@ -62,6 +62,7 @@ class _EditState extends State<Edit> {
                   if (value!.isEmpty) {
                     return "Nama Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(
@@ -79,6 +80,7 @@ class _EditState extends State<Edit> {
                   if (value!.isEmpty) {
                     return "Alamat Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(height: 10),
@@ -94,6 +96,7 @@ class _EditState extends State<Edit> {
                   if (value!.isEmpty) {
                     return "Kontak Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(height: 10),
@@ -109,6 +112,7 @@ class _EditState extends State<Edit> {
                   if (value!.isEmpty) {
                     return "Alamat Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(height: 10),
