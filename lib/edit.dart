@@ -118,12 +118,12 @@ class _EditState extends State<Edit> {
                     _update().then((value) {
                       if (value) {
                         final snackBar = SnackBar(
-                          content: const Text("data berhasil disimpan"),
+                          content: const Text("data berhasil di ubah"),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       } else {
                         final snackBar = SnackBar(
-                          content: const Text("data gagal disimpan"),
+                          content: const Text("data gagal di ubah"),
                         );
                         ScaffoldMessenger.of(context).showSnackBar(snackBar);
                       }

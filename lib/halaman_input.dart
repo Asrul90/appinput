@@ -33,6 +33,24 @@ class _Halaman_InputState extends State<Halaman_Input> {
     }
   }
 
+  Future _hapus(String id) async {
+    try {
+      final respon = await http
+          .post(Uri.parse('http://192.168.11.160/api_input/delete.php'), body: {
+        "id": id,
+      });
+      if (respon.statusCode == 200) {
+        final data = jsonEncode(respon.body);
+        setState(() {
+          _listdata = data as List;
+          _loading = false;
+        });
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void initState() {
     _getdata();
     super.initState();
@@ -71,22 +89,52 @@ class _Halaman_InputState extends State<Halaman_Input> {
                     child: ListTile(
                       title: Text(_listdata[index]['nama']),
                       subtitle: Text(_listdata[index]['alamat']),
-                      trailing: IconButton(
-                        onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => Edit(
-                                        ListData: {
-                                          'id': _listdata[index]['id'],
-                                          'nama': _listdata[index]['nama'],
-                                          'alamat': _listdata[index]['alamat'],
-                                          'notlp': _listdata[index]['notlp'],
-                                          'saran': _listdata[index]['saran'],
-                                        },
-                                      )));
-                        },
-                        icon: Icon(Icons.edit),
+                      trailing: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          IconButton(
+                            onPressed: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Edit(
+                                            ListData: {
+                                              'id': _listdata[index]['id'],
+                                              'nama': _listdata[index]['nama'],
+                                              'alamat': _listdata[index]
+                                                  ['alamat'],
+                                              'notlp': _listdata[index]
+                                                  ['notlp'],
+                                              'saran': _listdata[index]
+                                                  ['saran'],
+                                            },
+                                          )));
+                            },
+                            icon: Icon(Icons.edit),
+                          ),
+                          IconButton(
+                              onPressed: () {
+                                showDialog(
+                                    barrierDismissible: false,
+                                    context: context,
+                                    builder: ((context) {
+                                      return AlertDialog(
+                                        content: Text("Hapus Data Ini ? "),
+                                        actions: [
+                                          ElevatedButton(
+                                              onPressed: () {},
+                                              child: Text('Hapus')),
+                                          ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              child: Text('Batal')),
+                                        ],
+                                      );
+                                    }));
+                              },
+                              icon: Icon(Icons.delete))
+                        ],
                       ),
                     ),
                   ),
