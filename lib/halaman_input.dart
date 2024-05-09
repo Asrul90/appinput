@@ -122,7 +122,18 @@ class _Halaman_InputState extends State<Halaman_Input> {
                                         content: Text("Hapus Data Ini ? "),
                                         actions: [
                                           ElevatedButton(
-                                              onPressed: () {},
+                                              onPressed: () {
+                                                _hapus(_listdata[index]['id'])
+                                                    .then((value) {
+                                                  Navigator.pushAndRemoveUntil(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: ((context) =>
+                                                            Halaman_Input()),
+                                                      ),
+                                                      (route) => false);
+                                                });
+                                              },
                                               child: Text('Hapus')),
                                           ElevatedButton(
                                               onPressed: () {
