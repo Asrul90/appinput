@@ -2,23 +2,26 @@ import 'package:appinput/halaman_input.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class LihatCafe extends StatefulWidget {
-  const LihatCafe({super.key});
+class Edit extends StatefulWidget {
+  final Map ListData;
+  const Edit({super.key, required this.ListData});
 
   @override
-  State<LihatCafe> createState() => _LihatCafeState();
+  State<Edit> createState() => _EditState();
 }
 
-class _LihatCafeState extends State<LihatCafe> {
+class _EditState extends State<Edit> {
   final formKey = GlobalKey<FormState>();
+  TextEditingController id = TextEditingController();
   TextEditingController nama = TextEditingController();
   TextEditingController alamat = TextEditingController();
   TextEditingController notlp = TextEditingController();
   TextEditingController saran = TextEditingController();
 
-  Future _simpan() async {
+  Future _update() async {
     final respon = await http
-        .post(Uri.parse('http://192.168.11.160/api_input/create.php'), body: {
+        .post(Uri.parse('http://192.168.11.160/api_input/edit.php'), body: {
+      'id': id.text,
       'nama': nama.text,
       'alamat': alamat.text,
       'notlp': notlp.text,
@@ -32,9 +35,14 @@ class _LihatCafeState extends State<LihatCafe> {
 
   @override
   Widget build(BuildContext context) {
+    id.text = widget.ListData['id'];
+    nama.text = widget.ListData['nama'];
+    alamat.text = widget.ListData['alamat'];
+    notlp.text = widget.ListData['notlp'];
+    saran.text = widget.ListData['saran'];
     return Scaffold(
       appBar: AppBar(
-        title: Text("LihatCafeYangDiKunjungi"),
+        title: Text("EditYangDiKunjungi"),
       ),
       body: Form(
         key: formKey,
@@ -45,7 +53,7 @@ class _LihatCafeState extends State<LihatCafe> {
               TextFormField(
                 controller: nama,
                 decoration: InputDecoration(
-                  hintText: "Nama Cafe",
+                  hintText: "Ubah Cafe",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -62,7 +70,7 @@ class _LihatCafeState extends State<LihatCafe> {
               TextFormField(
                 controller: alamat,
                 decoration: InputDecoration(
-                  hintText: "Alamat Cafe",
+                  hintText: "Ubah Alamat",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -77,7 +85,7 @@ class _LihatCafeState extends State<LihatCafe> {
               TextFormField(
                 controller: notlp,
                 decoration: InputDecoration(
-                  hintText: "Kontak Cafee",
+                  hintText: "Ubah Kontak",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -92,7 +100,7 @@ class _LihatCafeState extends State<LihatCafe> {
               TextFormField(
                 controller: saran,
                 decoration: InputDecoration(
-                  hintText: "Saran",
+                  hintText: "Ubah Saran",
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(12),
                   ),
@@ -107,7 +115,7 @@ class _LihatCafeState extends State<LihatCafe> {
               ElevatedButton(
                 onPressed: () {
                   if (formKey.currentState!.validate()) {
-                    _simpan().then((value) {
+                    _update().then((value) {
                       if (value) {
                         final snackBar = SnackBar(
                           content: const Text("data berhasil disimpan"),
@@ -127,7 +135,7 @@ class _LihatCafeState extends State<LihatCafe> {
                         (route) => false);
                   }
                 },
-                child: Text('SIMPAN'),
+                child: Text('UPDATE'),
               ),
             ],
           ),

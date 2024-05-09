@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:appinput/detail_cafe.dart';
+import 'package:appinput/edit.dart';
 import 'package:appinput/lihat_cafe.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -57,11 +58,36 @@ class _Halaman_InputState extends State<Halaman_Input> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DetailCafe()));
+                              builder: (context) => DetailCafe(
+                                    ListData: {
+                                      'id': _listdata[index]['id'],
+                                      'nama': _listdata[index]['nama'],
+                                      'alamat': _listdata[index]['alamat'],
+                                      'notlp': _listdata[index]['notlp'],
+                                      'saran': _listdata[index]['saran'],
+                                    },
+                                  )));
                     },
                     child: ListTile(
                       title: Text(_listdata[index]['nama']),
                       subtitle: Text(_listdata[index]['alamat']),
+                      trailing: IconButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => Edit(
+                                        ListData: {
+                                          'id': _listdata[index]['id'],
+                                          'nama': _listdata[index]['nama'],
+                                          'alamat': _listdata[index]['alamat'],
+                                          'notlp': _listdata[index]['notlp'],
+                                          'saran': _listdata[index]['saran'],
+                                        },
+                                      )));
+                        },
+                        icon: Icon(Icons.edit),
+                      ),
                     ),
                   ),
                 );
