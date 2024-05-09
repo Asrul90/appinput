@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:appinput/detail_cafe.dart';
 import 'package:appinput/lihat_cafe.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
@@ -51,16 +52,24 @@ class _Halaman_InputState extends State<Halaman_Input> {
               itemCount: _listdata.length,
               itemBuilder: (context, index) {
                 return Card(
-                  child: ListTile(
-                    title: Text(_listdata[index]['nama']),
-                    subtitle: Text(_listdata[index]['alamat']),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DetailCafe()));
+                    },
+                    child: ListTile(
+                      title: Text(_listdata[index]['nama']),
+                      subtitle: Text(_listdata[index]['alamat']),
+                    ),
                   ),
                 );
               }),
       floatingActionButton: FloatingActionButton(
         child: Text(
-          '+',
-          style: TextStyle(fontSize: 24),
+          'Cafe Apa Saja Yang Anda Kunjungi',
+          style: TextStyle(fontSize: 8),
         ),
         onPressed: () {
           Navigator.push(
