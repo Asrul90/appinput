@@ -18,7 +18,7 @@ class _LihatCafeState extends State<LihatCafe> {
 
   Future _simpan() async {
     final respon = await http
-        .post(Uri.parse('http://192.168.11.160/api_input/create.php'), body: {
+        .post(Uri.parse('http://192.168.100.76/api_input/create.php'), body: {
       'nama': nama.text,
       'alamat': alamat.text,
       'notlp': notlp.text,
@@ -54,6 +54,7 @@ class _LihatCafeState extends State<LihatCafe> {
                   if (value!.isEmpty) {
                     return "Nama Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(
@@ -71,6 +72,7 @@ class _LihatCafeState extends State<LihatCafe> {
                   if (value!.isEmpty) {
                     return "Alamat Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(height: 10),
@@ -86,6 +88,7 @@ class _LihatCafeState extends State<LihatCafe> {
                   if (value!.isEmpty) {
                     return "Kontak Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(height: 10),
@@ -101,6 +104,7 @@ class _LihatCafeState extends State<LihatCafe> {
                   if (value!.isEmpty) {
                     return "Alamat Cafe Tidak Boleh Kosong!";
                   }
+                  return null;
                 },
               ),
               SizedBox(height: 10),

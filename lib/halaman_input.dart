@@ -20,7 +20,7 @@ class _Halaman_InputState extends State<Halaman_Input> {
   Future _getdata() async {
     try {
       final respon =
-          await http.get(Uri.parse('http://192.168.11.160/api_input/read.php'));
+          await http.get(Uri.parse('http://192.168.100.76/api_input/read.php'));
       if (respon.statusCode == 200) {
         final data = jsonEncode(respon.body);
         setState(() {
@@ -36,7 +36,7 @@ class _Halaman_InputState extends State<Halaman_Input> {
   Future _hapus(String id) async {
     try {
       final respon = await http
-          .post(Uri.parse('http://192.168.11.160/api_input/delete.php'), body: {
+          .post(Uri.parse('http://192.168.100.76/api_input/delete.php'), body: {
         "id": id,
       });
       if (respon.statusCode == 200) {
@@ -153,8 +153,8 @@ class _Halaman_InputState extends State<Halaman_Input> {
               }),
       floatingActionButton: FloatingActionButton(
         child: Text(
-          'Cafe Apa Saja Yang Anda Kunjungi',
-          style: TextStyle(fontSize: 8),
+          'CARI',
+          style: TextStyle(fontSize: 18),
         ),
         onPressed: () {
           Navigator.push(

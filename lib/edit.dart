@@ -20,7 +20,7 @@ class _EditState extends State<Edit> {
 
   Future _update() async {
     final respon = await http
-        .post(Uri.parse('http://192.168.11.160/api_input/edit.php'), body: {
+        .post(Uri.parse('http://192.168.100.76/api_input/edit.php'), body: {
       'id': id.text,
       'nama': nama.text,
       'alamat': alamat.text,
